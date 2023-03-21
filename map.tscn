@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://crgvdet40f8xs"]
+
+[ext_resource type="Script" path="res://playerView.gd" id="1_qoesd"]
+[ext_resource type="Theme" uid="uid://1sjw6rnk5kmw" path="res://theme.tres" id="2_tdc5t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hyki7"]
+radius = 32.0
+
+[sub_resource type="GDScript" id="GDScript_ryy7g"]
+script/source = "extends Label
+
+func _ready():
+	_on_timer_timeout()
+
+func _on_timer_timeout():
+	text = \"FPS: \" + str(Engine.get_frames_per_second())
+"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-559, -453)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(161, -28, 479, 26, 717, -180, 1152, -168, 1202, -95, 1199, 77, 1107, 220, 1288, 432, 1523, 178, 1882, 515, 1685, 807, 1018, 928, 1183, 1102, 1025, 1220, 660, 1204, 539, 1086, 688, 921, 148, 896, -261, 594, -772, 610, -858, 261, -293, -161)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(-15, 58)
+rotation = -2.21687
+script = ExtResource("1_qoesd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_hyki7")
+
+[node name="raycasts" type="Node2D" parent="Player"]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+rotation = -0.00174355
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
+
+[node name="Panels" type="Control" parent="Player/Camera2D/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+theme = ExtResource("2_tdc5t")
+
+[node name="FPS Label" type="Label" parent="Player/Camera2D/CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 32
+text = "999999999"
+script = SubResource("GDScript_ryy7g")
+
+[node name="Timer" type="Timer" parent="Player/Camera2D/CanvasLayer/FPS Label"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Player/Camera2D/CanvasLayer/FPS Label/Timer" to="Player/Camera2D/CanvasLayer/FPS Label" method="_on_timer_timeout"]

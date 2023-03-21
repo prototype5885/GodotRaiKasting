@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "wc3jQrS1ZuQPuQb2XDp/2MmccYLti0vKYw1bGE6Ly+F/o/SjeXBGvf2yrtnYyjAp1hncUrYSHsws4GRIKGnuDg==",
+  "success": true,
+  "projectFilePath": "Q:\\SDK\\Godot\\projects\\RayCasting\\RayCasting.csproj",
+  "expectedPackageFiles": [
+    "Q:\\SDK\\Godot\\editor_data\\mono\\GodotNuGetFallbackFolder\\godot.sourcegenerators\\4.0.1\\godot.sourcegenerators.4.0.1.nupkg.sha512",
+    "Q:\\SDK\\Godot\\editor_data\\mono\\GodotNuGetFallbackFolder\\godotsharp\\4.0.1\\godotsharp.4.0.1.nupkg.sha512",
+    "Q:\\SDK\\Godot\\editor_data\\mono\\GodotNuGetFallbackFolder\\godotsharpeditor\\4.0.1\\godotsharpeditor.4.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
