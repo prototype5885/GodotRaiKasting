@@ -13,7 +13,9 @@ var distance: float
 
 var index: int
 
-@export var raycastDivider: float = 8
+var theme = preload("res://theme.tres")
+
+@export var raycastDivider: float = 16
 @export var fov: float = 90
 
 var camera: Camera2D
@@ -27,6 +29,7 @@ func _input(event):
 		rotation += event.relative.x * 0.001
 
 
+	
 		
 func _ready():
 	var raycastAmount: float = 1920.0/raycastDivider
@@ -43,9 +46,6 @@ func _ready():
 		panel.position.x += i * 1920/raycastAmount
 		panels.add_child(panel)
 		
-	
-
-
 func _process(delta: float) -> void:
 	inputDirectionY = Input.get_axis("up", "down")
 	inputDirectionX = Input.get_axis("left", "right")
@@ -53,14 +53,15 @@ func _process(delta: float) -> void:
 	velocity = velocity.lerp(direction * speed, 5 * delta)
 	move_and_slide()
 
+	
+
 	for i in $raycasts.get_children():
+		index = i.get_index()
+		panel = panels.get_child(index)
+		
 		if i.is_colliding():
-			index = i.get_index()
-			panel = panels.get_child(index)
-			
-			origin = global_transform.origin
 			collision_point = i.get_collision_point()
-			distance = origin.distance_to(collision_point)
+			distance = global_transform.origin.distance_to(collision_point)
 			distance = distance * cos(i.rotation)
 			panel.size.y = lerp(0, 2048, 100/distance)
 			panel.position.y = -panel.size.y/2

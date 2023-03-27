@@ -25,6 +25,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="RayCasting"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 up={
